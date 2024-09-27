@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UsersUpdateRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -16,48 +17,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-//        CREATE
-//        DB::table('users')->insert([
-//            'name' => 'John',
-//            'email' => 'john@email.com',
-//            'password' => Hash::make('secret123@@'),
-//        ]);
-
-//        READ
-//        $users = DB::table('users')->get();
-//        dd($users);
-
-//        UPDATE
-//        $result = DB::table('users')->where('id', 1)->update([
-//            'created_at' => Carbon::now(),
-//            'updated_at' => Carbon::now(),
-//        ]);
-//        dd($result);
-
-//        DELETE
-//        $result = DB::table('users')->where('id', 1)->delete();
-//        $result = DB::table('users')->truncate();
-
-        if (Storage::exists('users')) {
-            $users = Storage::json('public/users.json');
-        } else {
-            return "File not found!";
-        }
-
-    dd($users);
-
-    foreach($users as $user) {
-        DB::table('users')->insert([
-            'name' => $user['name'],
-            'email' => $user['email'],
-            'password' => Hash::make($user['password']),
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
-    }
-
-
-        return redirect('/');
+        $users = DB::table('users')->get();
+        return view('users/index', compact('users'));
     }
 
     /**
@@ -81,7 +42,9 @@ class UsersController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $user = DB::table('users')->find($id);
+
+        return view('users/show', compact('user'));
     }
 
     /**
@@ -95,9 +58,9 @@ class UsersController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UsersUpdateRequest $request, string $id)
     {
-        //
+        return "WHAT";
     }
 
     /**
