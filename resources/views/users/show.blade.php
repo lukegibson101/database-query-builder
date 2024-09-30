@@ -49,10 +49,10 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label class="form-check-label" for="date">Date</label>
-                    <input name='date' type="date" class="form-control  @error('date') is-invalid @enderror" id="date" aria-describedby="dateInput">
+                    <label class="form-check-label" for="date">Updated Time</label>
+                    <input value="{{ \Carbon\Carbon::parse($user->created_at)->format('Y-m-d H:i:s') }}" name='updated_at' type="datetime-local" class="form-control  @error('date') is-invalid @enderror" id="date" aria-describedby="dateInput">
                     <div id="dateInput" class="invalid-feedback">
-                        @error('date')
+                        @error('created_at')
                         {{ $message }}
                         @enderror
                     </div>
