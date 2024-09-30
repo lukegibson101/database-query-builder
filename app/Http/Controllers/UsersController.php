@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
+use Faker\Factory;
+use Illuminate\Support\Str;
 
 
 class UsersController extends Controller
@@ -18,8 +20,18 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = DB::table('users')->get();
+//        $users = DB::table('users')->get();
+
+//        Offset Pagination
+//        $users = DB::select('select * from users order by id asc limit 10 offset 10');
+
+//        Cursor pagination
+//        $users = DB::select('select * from users where id > 10 order by id asc limit 10');
+
+        $users = DB::table('users')->paginate(10);
+//        dd($users);
         return view('users/index', compact('users'));
+
     }
 
     /**
@@ -90,6 +102,47 @@ class UsersController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = DB::table('users')
+            ->where('id', $id)
+            ->delete();
+
+
+        return redirect()->back();
     }
+
+    public function created_dummy_users(Request $request){
+//        $users = Storage::json('users.json');
+//        $time = Carbon::now();
+//        foreach ($users as $user){
+//            DB::table('users')->insertOrIgnore([
+//                'name'=> $user['name'],
+//                'email'=> $user['email'],
+//                'password'=> Hash::make($user['email']),
+//                'created_at'=> $time->addHour(),
+//                'updated_at'=> $time->addHour(),
+//            ]);
+//        }
+
+        $faker = Factory::create();
+
+        for ($i = 0; $i < 100; $i++) {
+            DB::table('users')->insert([
+                'name' => $faker->name,
+                'email' => $faker->email,
+                'password' => Hash::make($faker->password(8)),
+                'email_verified_at' => now(),
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+        }
+        return redirect()->back();
+    }
+
+    public function delete_dummy_users() {
+        DB::table('users')->truncate();
+        return redirect()->back();
+    }
+
+
 }
