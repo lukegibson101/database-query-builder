@@ -45,12 +45,12 @@ class User extends Authenticatable
         ];
     }
 
-    public function myCustomModel() {
-        return $this->hasMany(MyCustomModel::class);
-    }
-
     public function posts() {
         return $this->hasMany(Post::class);
+    }
+
+    public function comment() {
+        return $this->belongsTo(Comment::class);
     }
 
 

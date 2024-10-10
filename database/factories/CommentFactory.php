@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\MyCustomModel;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Comment>
  */
-class SomeCustomFactory extends Factory
+class CommentFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,10 +18,7 @@ class SomeCustomFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name,
+            'message' => fake()->sentence
         ];
     }
-    protected $model = MyCustomModel::class;
 }
-
-

@@ -1,34 +1,34 @@
 <?php
 
 use App\Http\Controllers\UsersController;
+use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
+use Illuminate\Support\Facades\Schema;
 
 Route::get('/', function () {
-//    CREATING DATA
-//    $post = new Post;
-//    $post->title = 'My first post';
-//    $post->body = 'The is the first body post';
-//    $post->save();
-//    return "post created";
 
-//    READING DATA
-//    dd(Post::find(1));
-//    Post::firstWhere('id', 1);
-//    dd(User::select('email')->orderBy('id', 'desc')->get());
+//Schema::disableForeignKeyConstraints();
+//User::truncate();
+//Post::truncate();
+//Comment::truncate();
 
-//    UPDATING DATA
-//    $user = User::find(1);
-//    $user->name = "Luke Gibson";
-//    $user->save();
-//    echo $user->name;
+//     has one
+//    dd(Comment::find(1)->user->name);
 
-    // DELETING DATA
-//    User::find(1)->delete();
-//    return "User Deleted";
+//    has one inverse
+//    dd(User::find(1)->comment->message);
 
-
+//    $user = [
+//        'name' => 'Edwin Diaz',
+//        'email' => 'Edwin@mail.com',
+//        'password' => 'secret123'
+//    ];
+//
+//    $newUser = new User($user);
+//
+//    $comment = Comment::find(5)->user()->delete($user);
 
 
 

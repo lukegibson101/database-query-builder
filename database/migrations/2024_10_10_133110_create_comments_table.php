@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -12,10 +13,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('custom_model', function (Blueprint $table) {
-            $table->uuid('some_custom_id')->index()->primary();
-            $table->foreignIdFor(User::class, 'user_id');
-            $table->string('name');
+        Schema::create('comments', function (Blueprint $table) {
+            $table->id();
+            $table->foreignIdFor(Post::class)->nullable();
+            $table->string('message');
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('custom_model');
+        Schema::dropIfExists('comments');
     }
 };
