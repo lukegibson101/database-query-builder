@@ -30,7 +30,19 @@ Route::get('/', function () {
 //
 //    $comment = Comment::find(5)->user()->delete($user);
 
+//dd(User::find(1)->posts);
+//dd(Post::find(1)->user);
 
+//    $post = new Post([
+//        'title' => 'hello',
+//        'body' => 'my body'
+//    ]);
+//    User::find(1)->posts()->save($post);
+
+//    dd(User::find(1)->posts()->whereId('id', '>=', 7)->delete());
+
+
+    return response(200);
 
 })->name('home');
 
