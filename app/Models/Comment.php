@@ -9,7 +9,15 @@ class Comment extends Model
 {
     use HasFactory;
 
-    public function user() {
-        return $this->hasOne(User::class);
+//    protected $fillable = [
+//        'message',
+//        'post_id',
+//    ];
+
+protected $guarded = [];
+
+protected $touches = ['post'];
+    public function post() {
+        return $this->belongsTo(Post::class);
     }
 }
