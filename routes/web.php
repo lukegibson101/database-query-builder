@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\UsersController;
 use App\Models\Comment;
+use App\Models\Image;
 use App\Models\Role;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
@@ -83,7 +85,7 @@ Route::get('/', function () {
 //    dd(User::find(1)->postComments()->first()->update($comment));
 //
 
-    $user = User::find(3);
+//    $user = User::find(3);
 //    $user->roles()->attach(1);
 //    $user->roles()->sync([1]);
 
@@ -98,8 +100,36 @@ Route::get('/', function () {
 ////    Role::destroy([3,4]);
 //$comment = new Comment(['message' => "A NEW COMMENT"]);
 //dd(Post::find(4)->comments()->save($comment));
+//
+//    $user = User::find(3);
+//
+//    dd($user->oldestImage);
 
-    return response(200);
+
+//    $post = Post::find(4);
+//    $image = Image::find(12);
+
+//    dd($image->imageable->title);
+
+//    $image = new Image(['path' => fake()->imageUrl('100', '50')]);
+
+//    $user->image()->save($image);
+//    $post->image()->save($image);
+
+//    dd($user->image()->update(['path' => fake()->imageUrl('100', '50')]));
+
+//    return "Image saved";
+
+//    return response(200);
+
+//    $post = Post::find(4);
+//    $comment = Comment::find(1);
+//    $tag = new Tag;
+//    $tag->tag = "PHP";
+
+//    $comment->tags()->save($tag);
+
+    dd(Tag::find(2)->comments);
 
 })->name('home');
 
